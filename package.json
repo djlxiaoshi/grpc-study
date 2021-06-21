@@ -7,16 +7,25 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "node ./src/client.js",
     "server": "node ./src/server.js",
+    "protoc": "protoc  --js_out=import_style=commonjs,binary:. --grpc_out=grpc_js:. src/static-pb/protoc/proto/hello.proto",
+    "grpc-tools": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:. --grpc_out=grpc_js:. src/static-pb/grpc-tools/proto/hello.proto",
+    "protobuf": "pbjs -t static-module -w commonjs protos/*.proto > static_codegen/test.js",
     "stream:client": "node ./src/stream.client.js --db_path=./src/route_guide_db.json",
     "stream:server": "node ./src/stream.server.js --db_path=./src/route_guide_db.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.3.2",
     "@grpc/proto-loader": "^0.5.4",
     "async": "^3.2.0",
     "grpc": "^1.24.3",
+    "grpc-tools": "^1.11.1",
     "lodash": "^4.17.19",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "protobufjs": "^6.10.1"
+  },
+  "devDependencies": {
+    "google-protobuf": "^4.0.0-rc.1"
   }
 }
